@@ -1,0 +1,121 @@
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container {
+    max-width: 800px;
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #4a90e2;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #4a90e2;
+    padding-bottom: 5px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fafafa;
+    transition: background 0.3s ease;
+  }
+  
+  .liending {
+    margin-bottom: 8px;
+    padding: 10px;
+    border: px solid #aaff00;
+    border-radius: 5px;
+    background: #228B22;
+    transition: background 0.3s ease;
+  }
+  
+  li:hover {
+    background: #adadad;
+  }
+  
+  .shortcut {
+    background-color: #ffeb3b;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .cmd {
+    background-color: #03a9f4;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-style: italic;
+    color: #fff;
+  }
+  
+  .check {
+    background-color: #8bc34a;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .tool {
+    background-color: #ff7043;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .ending {
+    background-color: #03ff31;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #000000;
+  }
+  
+  .boost {
+    background-color: #e91e63;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .cmd,
+  .shortcut,
+  .check,
+  .tool,
+  .boost {
+    display: inline-block;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }

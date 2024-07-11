@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+body {
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+/* Container styles */
+#viewport {
+  padding: 0;
+  transition: all 0.5s ease;
+}
+
+#content {
+  padding: 18px 25px 0 25px;
+  width: 100%;
+  position: relative;
+}
+
+/* Remove sidebar styles */
