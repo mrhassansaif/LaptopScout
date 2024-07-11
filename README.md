@@ -21,7 +21,4 @@ To explore Laptop Scout and make smarter laptop purchases, visit the app at [Lap
 ### Contributions:
 Contributions and feedback are welcome! Feel free to fork the repository and submit pull requests to enhance Laptop Scout further.
 
-### About:
-Laptop Scout was created out of boredom, insomnia, and a passion for technology.
-
 Enjoy exploring Laptop Scout! 🚀
