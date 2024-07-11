@@ -1,13 +1,13 @@
-### Welcome to Laptop Scout!
+# Welcome to Laptop Scout!
 
 Laptop Scout is a ReactJS web application crafted to simplify the process of buying a second-hand laptop. Laptop Scout was created as a fun late-night project, out of boredom, insomnia, and a passion for technology. This app aims to streamline the laptop buying experience with essential tips and tricks.
 
-### Features:
+# Features:
 - **Dashboard Overview**: Provides a list of critical commands and questions for evaluating a laptop's condition.
 - **Data Entry Form**: Allows users to input and store data about laptops they're assessing.
 - **View Section**: Displays entered laptop data in a clear, card-based format.
 
-### Why Laptop Scout?
+# Why Laptop Scout?
 Whether you're a tech enthusiast or a casual buyer, Laptop Scout offers valuable insights to ensure you make an informed decision when purchasing a used laptop.
 
 ### Technologies Used:
