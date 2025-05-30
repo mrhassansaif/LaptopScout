@@ -102,12 +102,16 @@ function DashboardContent() {
       </div>
 
       <div className="section">
-        <h2>Tools</h2>
+        <h2>Tools: Software & Benchmarks</h2>
         <ul>
           <li><a href="https://nzxt.com/software/cam" target="_blank" className="tool">NZXT Cam: &nbsp;<i className="fa-solid fa-download"></i></a> Monitor system performance and temperatures.</li>
           <li><a href="https://crystalmark.info/en/" target="_blank" className="tool">CrystalDiskInfo:&nbsp; <i className="fa-solid fa-download"></i></a> Check [SSD Name] ssd tbw rating (Google or ChatGPT)</li>
           <li><a href="https://crystalmark.info/en/" target="_blank" className="tool">CrystalDiskMark:&nbsp; <i className="fa-solid fa-download"></i></a> Inspect disk speed and performance.</li>
           <li><a href="https://www.alcpu.com/CoreTemp/" target="_blank" className="tool">CoreTemp: &nbsp;<i className="fa-solid fa-download"></i></a> Monitor CPU temperature.</li>
+          <li><a href="https://www.cpuid.com/downloads/cpu-z/cpu-z_2.15-en.exe" target="_blank" className="tool">CPU-Z: &nbsp;<i className="fa-solid fa-download"></i></a> CPU Specs</li>
+          <li><a href="https://www.techpowerup.com/gpuz/" target="_blank" className="tool">GPU-Z: &nbsp;<i className="fa-solid fa-download"></i></a> GPU Specs</li>
+          <li><a href="https://www.maxon.net/en/downloads/cinebench-2024-downloads" target="_blank" className="tool">Cinebench: &nbsp;<i className="fa-solid fa-download"></i></a> CPU Benchmark</li>
+          <li><a href="https://geeks3d.com/furmark/downloads/" target="_blank" className="tool">FurMark: &nbsp;<i className="fa-solid fa-download"></i></a> GPU Benchmark</li>
           <li><span className="tool">Windows Memory Diagnostics:&nbsp;<i className="fa-solid fa-magnifying-glass"></i></span> Test system memory for errors. (Search in TaskBar)</li>
         </ul>
       </div>
