@@ -23,5 +23,49 @@ h1 {
   width: 100%;
   position: relative;
 }
+/* Make prank modals occupy a larger portion of the viewport */
+.prank-modal-large .modal-content {
+  height: 75vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Optional: enlarge title/body text for emphasis */
+.prank-modal-large .modal-body {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+/* Make the prank modals occupy more of the viewport */
+.prank-modal-large .modal-content {
+  height: 72vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* Slightly larger header/footer spacing for emphasis */
+.prank-modal-large .modal-header,
+.prank-modal-large .modal-footer {
+  padding: 12px 20px;
+}
+
+/* Modal body styling and centering */
+.prank-modal-large .modal-body {
+  padding: 18px 20px;
+  text-align: center;
+}
+
+/* Image in second modal */
+.prank-image {
+  max-width: 80%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
 
 /* Remove sidebar styles */
