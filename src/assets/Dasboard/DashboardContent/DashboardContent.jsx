@@ -4,8 +4,52 @@ import Button from 'react-bootstrap/Button';
 import { MdScreenShare } from "react-icons/md";
 
 
-
 function DashboardContent() {
+
+  const [showToast, setShowToast] = React.useState(false);
+
+  const powershellCode = `
+$w = Get-CimInstance -ClassName Win32_WinSAT
+$scores = [ordered]@{
+  CPU      = [double]$w.CPUScore
+  D3D      = [double]$w.D3DScore
+  Disk     = [double]$w.DiskScore
+  Graphics = [double]$w.GraphicsScore
+  Memory   = [double]$w.MemoryScore
+}
+$avg = ($scores.Values | Measure-Object -Average).Average
+$min = ($scores.Values | Measure-Object -Minimum).Minimum
+
+function Get-Category([double]$v) {
+  if ($v -le 3) { 'Low end' }
+  elseif ($v -le 5) { 'Average' }
+  elseif ($v -le 7) { 'Good' }
+  else { 'Very high' }
+}
+
+$scores.GetEnumerator() | ForEach-Object {
+  [PSCustomObject]@{
+    Component = $_.Key
+    Score     = "{0:N2}" -f $_.Value
+    Category  = Get-Category $_.Value
+  }
+} | Format-Table -AutoSize
+
+""
+"Average (mean) : {0:N2}" -f $avg
+"WinSPRLevel (base) : {0:N2}" -f $min
+"Average category : $(Get-Category $avg)"
+`;
+
+const copyCode = () => {
+  navigator.clipboard.writeText(powershellCode);
+  setShowToast(true);
+
+  setTimeout(() => {
+    setShowToast(false);
+  }, 1500);
+};
+
     const openNewWindow = (color) => {
   let backgroundColor;
   switch (color) {
@@ -102,27 +146,57 @@ function DashboardContent() {
       </div>
 
       <div className="section">
-        <h2>Tools: Software & Benchmarks</h2>
-        <ul>
-          <li><a href="https://nzxt.com/software/cam" target="_blank" className="tool">NZXT Cam: &nbsp;<i className="fa-solid fa-download"></i></a> Monitor system performance and temperatures.</li>
-          <li><a href="https://crystalmark.info/en/" target="_blank" className="tool">CrystalDiskInfo:&nbsp; <i className="fa-solid fa-download"></i></a> Check [SSD Name] ssd tbw rating (Google or ChatGPT)</li>
-          <li><a href="https://crystalmark.info/en/" target="_blank" className="tool">CrystalDiskMark:&nbsp; <i className="fa-solid fa-download"></i></a> Inspect disk speed and performance.</li>
-          <li><a href="https://www.alcpu.com/CoreTemp/" target="_blank" className="tool">CoreTemp: &nbsp;<i className="fa-solid fa-download"></i></a> Monitor CPU temperature.</li>
-          <li><a href="https://www.cpuid.com/downloads/cpu-z/cpu-z_2.15-en.exe" target="_blank" className="tool">CPU-Z: &nbsp;<i className="fa-solid fa-download"></i></a> CPU Specs</li>
-          <li><a href="https://www.techpowerup.com/gpuz/" target="_blank" className="tool">GPU-Z: &nbsp;<i className="fa-solid fa-download"></i></a> GPU Specs</li>
-          <li><a href="https://www.maxon.net/en/downloads/cinebench-2024-downloads" target="_blank" className="tool">Cinebench: &nbsp;<i className="fa-solid fa-download"></i></a> CPU Benchmark</li>
-          <li><a href="https://geeks3d.com/furmark/downloads/" target="_blank" className="tool">FurMark: &nbsp;<i className="fa-solid fa-download"></i></a> GPU Benchmark</li>
-          <li><span className="tool">Windows Memory Diagnostics:&nbsp;<i className="fa-solid fa-magnifying-glass"></i></span> Test system memory for errors. (Search in TaskBar)</li>
-        </ul>
-      </div>
-
-      <div className="section">
         <h2>Generate Battery / Energy Report</h2>
         <ul>
           <li><span className="cmd">Power Efficiency Report:</span> powercfg /batteryreport</li>
           <li><span className="boost">Advice:</span> FULL CHARGE CAPACITY Must be 60%-70% of DESIGN CAPACITY</li>
           <li><span className="cmd">Power Efficiency Report:</span> powercfg -energy</li>
           <li><span className="boost">Advice:</span> FULL CHARGE CAPACITY V/S DESIGN CAPACITY</li>
+        </ul>
+      </div>
+
+      <div className="section">
+        <h2>Ratings</h2>
+        <ul>
+      <li className="liwhite">
+      <span className="cmd"> Component Performance Rating:</span>
+      &nbsp; Get-CimInstance Win32_WinSAT
+    </li>
+
+    <li className="liwhite">
+      <span className="boost"> Explanation:</span>
+      <div className="subtext">
+        WinSPRLevel provides an overall performance score based on CPU, RAM, Storage,
+        Graphics and 3D capabilities.
+      </div>
+
+      <ul className="sublist">
+        <li>• 1 to 3 indicates low-end performance</li>
+        <li>• 3 to 5 indicates mid-range performance</li>
+        <li>• 5 to 7 indicates good performance</li>
+        <li>• 7 to 9.9 indicates high-end performance</li>
+      </ul>
+    </li>
+    <li style={{ position: "relative" }}>
+  <span className="cmd">PowerShell Script:</span>  
+  <span>&nbsp; Run this in PowerShell as Administrator</span>
+
+  {/* Copy button */}
+  <button
+    onClick={() => copyCode()}
+    className="copy-btn"
+    title="Copy to clipboard"
+  >
+    📋
+  </button>
+
+  {/* Toast Message */}
+  {showToast && (
+    <div className="toast-message">
+      Code copied to clipboard
+    </div>
+  )}
+</li>
         </ul>
       </div>
 
@@ -148,6 +222,21 @@ function DashboardContent() {
           <li><span className="cmd">TaskManager (Admin Edition)</span> tasklist</li>
           <li><span className="cmd">System's Model Number :</span> WMIC CSPRODUCT GET NAME</li>
           <li><span className="cmd">System's SerialNumber</span> WMIC BIOS GET SERIALNUMBER</li>
+        </ul>
+      </div>
+
+      <div className="section">
+        <h2>Tools: Software & Benchmarks</h2>
+        <ul>
+          <li><a href="https://nzxt.com/software/cam" target="_blank" className="tool">NZXT Cam: &nbsp;<i className="fa-solid fa-download"></i></a> Monitor system performance and temperatures.</li>
+          <li><a href="https://crystalmark.info/en/" target="_blank" className="tool">CrystalDiskInfo:&nbsp; <i className="fa-solid fa-download"></i></a> Check [SSD Name] ssd tbw rating (Google or ChatGPT)</li>
+          <li><a href="https://crystalmark.info/en/" target="_blank" className="tool">CrystalDiskMark:&nbsp; <i className="fa-solid fa-download"></i></a> Inspect disk speed and performance.</li>
+          <li><a href="https://www.alcpu.com/CoreTemp/" target="_blank" className="tool">CoreTemp: &nbsp;<i className="fa-solid fa-download"></i></a> Monitor CPU temperature.</li>
+          <li><a href="https://www.cpuid.com/downloads/cpu-z/cpu-z_2.15-en.exe" target="_blank" className="tool">CPU-Z: &nbsp;<i className="fa-solid fa-download"></i></a> CPU Specs</li>
+          <li><a href="https://www.techpowerup.com/gpuz/" target="_blank" className="tool">GPU-Z: &nbsp;<i className="fa-solid fa-download"></i></a> GPU Specs</li>
+          <li><a href="https://www.maxon.net/en/downloads/cinebench-2024-downloads" target="_blank" className="tool">Cinebench: &nbsp;<i className="fa-solid fa-download"></i></a> CPU Benchmark</li>
+          <li><a href="https://geeks3d.com/furmark/downloads/" target="_blank" className="tool">FurMark: &nbsp;<i className="fa-solid fa-download"></i></a> GPU Benchmark</li>
+          <li><span className="tool">Windows Memory Diagnostics:&nbsp;<i className="fa-solid fa-magnifying-glass"></i></span> Test system memory for errors. (Search in TaskBar)</li>
         </ul>
       </div>
 

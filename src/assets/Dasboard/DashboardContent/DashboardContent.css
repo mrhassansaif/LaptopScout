@@ -119,3 +119,63 @@ body {
     margin-bottom: 5px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
+.copy-line {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  color: #333;
+}
+
+.copy-btn {
+  background: #e3e3e3;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.copy-btn:hover {
+  background: #cfcfcf;
+}
+
+.copy-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background: #e0e0e0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s ease;
+}
+
+.copy-btn:hover {
+  background: #bdbdbd;
+}
+
+.toast-message {
+  position: absolute;
+  right: 10px;
+  bottom: -35px;
+  background: #4caf50;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  animation: fadein 0.2s ease, fadeout 0.5s ease 1.3s forwards;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
